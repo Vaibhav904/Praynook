@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindu Pooja & Festivals Guide</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="py-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+          <div class="logo-container">
+            <a href="#" class="logo">
+
+              <div class="logo-text"><img src="./assets/image/praynook-logo.png" alt=""></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-4">
+          <div class="nav-menu">
+            <button class="nav-btn">
+              <i class="fas fa-hands-praying me-2"></i>What We Do
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner Section -->
+  <section class="banner-section">
+    <div class="container-fluid">
+      <div class="banner-content">
+        <h1>Discover Sacred Rituals & Divine Festivals</h1>
+        <p>Explore the rich traditions of Hindu poojas and festivals throughout the year. Our platform provides detailed
+          information about rituals, significance, and celebration methods for each month.</p>
+        <button class="join-btn">
+          <i class="fas fa-user-plus me-2"></i>Join Our Community
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="months-hero">
+    <div class="container-fluid">
+
+      <div class="row">
+
+
+
+        <div class="col-md-8 mt-3">
+
+          <div class="heading-wrapper">
+            <h1>Monthly Insights</h1>
+          </div>
+
+          <div class="months-slider-wrapper">
+            <button class="slider-btn left" id="prevMonth">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="months-container slider" id="monthsContainer">
+              <!-- Months loaded by JS -->
+            </div>
+
+            <button class="slider-btn right" id="nextMonth">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <section class="pooja-details">
+            <div class="container">
+              <div class="pooja-info-card">
+                <h3 class="selected-month" id="selectedMonthTitle">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span>January - Festivals & Poojas</span>
+                </h3>
+
+                <p class="month-description" id="monthDescription"></p>
+
+                <ul class="pooja-list" id="poojaList"></ul>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-md-4">
+          <div class="pandit-consult">
+
+            <div class="padint-whiteborder">
+
+
+              <h3>Consult Our Pandit</h3>
+              <p>Expert Guidance for Your Spiritual Needs</p>
+
+              <div class="pandit-profile">
+                <div class="pandit-info mt-4">
+                  <div class="pujari-image">
+                    <img src="./assets/image/pandit-profile.jpg" alt="">
+                  </div>
+                  <div class="pujari-name">
+                    <h4>Achary Manoj Shastri</h4>
+                    <p>Vedic Astrology</p>
+                  </div>
+                </div>
+
+
+                <div class="pandit-info mt-2">
+                  <div class="pujari-image">
+                    <img src="./assets/image/pandit-profile.jpg" alt="">
+                  </div>
+                  <div class="pujari-name">
+                    <h4>Achary Manoj Shastri</h4>
+                    <p>Vedic Astrology</p>
+                  </div>
+
+                </div>
+                <div class="pandit-info mt-2">
+                  <div class="pujari-image">
+                    <img src="./assets/image/pandit-profile.jpg" alt="">
+                  </div>
+                  <div class="pujari-name">
+                    <h4>Achary Manoj Shastri</h4>
+                    <p>Vedic Astrology</p>
+                  </div>
+
+                </div>
+                <div class="pandit-info mt-2">
+                  <div class="pujari-image">
+                    <img src="./assets/image/pandit-profile.jpg" alt="">
+                  </div>
+                  <div class="pujari-name">
+                    <h4>Achary Manoj Shastri</h4>
+                    <p>Vedic Astrology</p>
+                  </div>
+
+                </div>
+              </div>
+              <div class="view-pandit">
+                <a href="./assets/pandit-details.html">View All</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+  </section>
+
+  <!-- Pooja Details -->
+
+  <div class="main-section">
+    <div class="container">
+       <div class="heading-wrapper">
+            <h1>Aries Daily Horoscope & Vastu Guide</h1>
+          </div>
+      <div class="row g-3 row-cards justify-content-center mt-3">   <!-- smaller gutter -->
+
+        <!-- CARD 1 – HOROSCOPE (compact content) -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+          <div class="compact-card w-100">
+            <div class="card-accent-mini"></div>
+            <div class="card-body-mini d-flex flex-column">
+              <!-- title line -->
+              <div class="d-flex align-items-center compact-mb">
+                <span class="icon-mini">☀️</span>
+                <span class="card-head-mini">horoscope</span>
+              </div>
+              <!-- sign badge + short text -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="label-badge">♈ aries</span>
+                <span style="font-size:0.85rem; color:#800000;">today's vibe</span>
+              </div>
+              <p style="font-size:0.95rem; margin-bottom:0.5rem;">High energy & new leads. <span style="color:#800000;">Mars</span> boosts confidence.</p>
+              <!-- minimal details -->
+              <div class="d-flex justify-content-between mt-1">
+                <span style="font-size:0.85rem;">🌅 sunrise</span>
+                <span style="color:#800000; font-weight:500;">6:24</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span style="font-size:0.85rem;">🌙 moon</span>
+                <span style="color:#800000; font-weight:500;">scorpio</span>
+              </div>
+              <div class="mt-2 text-end">
+                <a href="#" class="btn-mini">✨ more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2 – EVENT SCHEDULE (festivals / pooja oriented) completely redesigned -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+          <div class="compact-card w-100">
+            <div class="card-accent-mini"></div>
+            <div class="card-body-mini d-flex flex-column">
+              <div class="d-flex align-items-center compact-mb">
+                <span class="icon-mini">🪔</span>   <!-- diya / festive icon -->
+                <span class="card-head-mini">upcoming festivals</span>
+              </div>
+              <!-- festival 1 – pooja related -->
+              <div class="festival-row">
+                <span class="fest-icon">🌺</span>
+                <div style="flex:1;">
+                  <div class="fest-name">Ram Navami</div>
+                  <div class="fest-date">Sat, 17 May 2025</div>
+                </div>
+                <span class="badge" style="background:#800000; color:#f5e8bd; font-size:0.7rem;">9 days</span>
+              </div>
+              <!-- festival 2 – pooja related -->
+              <div class="festival-row">
+                <span class="fest-icon">🪷</span>
+                <div style="flex:1;">
+                  <div class="fest-name">Hanuman Jayanti</div>
+                  <div class="fest-date">Thu, 22 May 2025</div>
+                </div>
+                <span class="badge" style="background:#800000; color:#f5e8bd; font-size:0.7rem;">14 days</span>
+              </div>
+              <!-- festival 3 – another pooja -->
+              <div class="festival-row">
+                <span class="fest-icon">🔔</span>
+                <div style="flex:1;">
+                  <div class="fest-name">Vat Purnima</div>
+                  <div class="fest-date">Wed, 11 June 2025</div>
+                </div>
+                <span class="badge" style="background:#800000; color:#f5e8bd; font-size:0.7rem;">34 days</span>
+              </div>
+              
+              <!-- auspicious muhurta (tiny) for pooja -->
+              <div class="d-flex mt-2 justify-content-between align-items-center bg-light p-2 rounded-4" style="border: 1px dotted #800000;">
+                <span style="font-size:0.8rem; color:#800000;">🌿 Abhijit muhurta</span>
+                <span style="font-size:0.8rem; background:#f5e8bd; padding:0.2rem 0.8rem; border-radius: 20px;">11:50–12:35</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3 – VASTU SHASTRA (compact, less content) -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+          <div class="compact-card w-100">
+            <div class="card-accent-mini"></div>
+            <div class="card-body-mini d-flex flex-column">
+              <div class="d-flex align-items-center compact-mb">
+                <span class="icon-mini">🧿</span>
+                <span class="card-head-mini">vastu tips</span>
+              </div>
+              <!-- simple vastu pointers (compact) -->
+              <div class="d-flex gap-2 mb-1">
+                <span style="color:#800000; font-size:1.2rem;">🧭</span>
+                <span style="font-size:0.9rem;"><strong>Ishaan (NE)</strong> : place water / worship area.</span>
+              </div>
+              <div class="d-flex gap-2 mb-1">
+                <span style="color:#800000; font-size:1.2rem;">🛏️</span>
+                <span style="font-size:0.9rem;"><strong>SW</strong> : master bedroom for stability.</span>
+              </div>
+              <div class="d-flex gap-2 mb-2">
+                <span style="color:#800000; font-size:1.2rem;">🔥</span>
+                <span style="font-size:0.9rem;"><strong>Agneya (SE)</strong> : kitchen, avoid centre.</span>
+              </div>
+              <!-- special tip block - small -->
+              <div class="tip-block d-flex align-items-center">
+                <span style="font-size:1.6rem; margin-right:10px;">🌱</span>
+                <div style="font-size:0.85rem;">Tulsi in east attracts positive energy.</div>
+              </div>
+              <!-- tiny remedy -->
+              <div class="mt-2 d-flex align-items-center">
+                <span class="badge" style="background:#f5e8bd; color:#800000; border:1px solid #800000;">💎 copper + water</span>
+                <span style="font-size:0.75rem; margin-left:8px;">vastu do's</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- main-section -->
+
+  <!-- simple footer (normal, no header) -->
+  <footer>
+    <p>Stay connected for daily horoscope updates, festival reminders, and spiritual guidance.</p>
+    <small>© 2026 Praynook.com | All Rights Reserved</small>
+  </footer>
+
+
+  <!-- Bootstrap & JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const monthsData = [
+
+
+   {
+        name: "January",
+        festivals: ["New Year", "Lohri", "Makar Sankranti", "Pongal", "Vasant Panchami", "Republic Day"],
+        description: "January has New Year celebrations, harvest festivals, and national holiday.",
+        poojas: [
+          { name: "New Year", date: "Jan 1", detail: "Start of the year" },
+          { name: "Lohri", date: "Jan 13", detail: "Winter festival" },
+          { name: "Makar Sankranti", date: "Jan 14", detail: "Sun enters Capricorn / harvest festival" },
+          { name: "Pongal", date: "Jan 14", detail: "Harvest festival (South India)" },
+          { name: "Vasant Panchami", date: "Jan 23", detail: "Spring festival dedicated to Saraswati" },
+          { name: "Republic Day", date: "Jan 26", detail: "National holiday commemorating Indian Republic" }
+        ]
+      },
+      {
+        name: "February",
+        festivals: ["Guru Ravidas Jayanti", "Maha Shivaratri"],
+        description: "February has devotional festivals including Shivaratri and Guru Ravidas Jayanti.",
+        poojas: [
+          { name: "Guru Ravidas Jayanti", date: "Feb 1", detail: "Birth anniversary of Guru Ravidas" },
+          { name: "Maha Shivaratri", date: "Feb 15", detail: "Night of Shiva worship",
+              link: "./assets/pooja-details.html" 
+           },
+         
+        ]
+      },
+      {
+        name: "March",
+        festivals: ["Holika Dahan", "Holi", "Rama Navami", "Mahavir Jayanti", "Chaitra Navratri"],
+        description: "Month of colors and spring festivals.",
+        poojas: [
+          { name: "Holika Dahan", date: "Mar 3", detail: "Bonfire eve of Holi" },
+          { name: "Holi", date: "Mar 4", detail: "Festival of colors" },
+          { name: "Rama Navami", date: "Mar 26/27", detail: "Birth of Lord Rama" },
+          { name: "Mahavir Jayanti", date: "Mar 29", detail: "Birth anniversary of Mahavira" },
+          { name: "Chaitra Navratri", date: "Mar 19", detail: "Start of spring Navratri" }
+        ]
+      },
+      {
+        name: "April",
+        festivals: ["Hanuman Jayanti", "Good Friday", "Tamil New Year / Puthandu", "Akshaya Tritiya"],
+        description: "April brings festivals celebrating divine births and seasonal rites.",
+        poojas: [
+          { name: "Hanuman Jayanti", date: "Apr 2", detail: "Birth of Lord Hanuman" },
+          { name: "Good Friday", date: "Apr 3", detail: "Christian holiday observed in India" },
+          { name: "Tamil New Year / Puthandu", date: "Apr 14", detail: "Regional New Year" },
+          { name: "Akshaya Tritiya", date: "Apr 20", detail: "Auspicious day for new beginnings" }
+        ]
+      },
+      {
+        name: "May",
+        festivals: ["Buddha Purnima"],
+        description: "May includes Buddha Purnima and spring devotional observances.",
+        poojas: [
+          { name: "Buddha Purnima", date: "May 1", detail: "Birth of Lord Buddha" }
+        ]
+      },
+      {
+        name: "June",
+        festivals: ["Ratha Yatra"],
+        description: "June has the famous chariot festival and seasonal observances.",
+        poojas: [
+          { name: "Ratha Yatra", date: "Jun 24", detail: "Chariot festival of Jagannath (approx)" }
+        ]
+      },
+      {
+        name: "July",
+        festivals: ["Guru Purnima"],
+        description: "July celebrates spiritual teachers and devotion.",
+        poojas: [
+          { name: "Guru Purnima", date: "Jul 29", detail: "Honoring gurus and teachers" }
+        ]
+      },
+      {
+        name: "August",
+        festivals: ["Raksha Bandhan", "Janmashtami"],
+        description: "August has sibling festival and Krishna’s birth celebration.",
+        poojas: [
+          { name: "Raksha Bandhan", date: "Aug 28", detail: "Celebration of brother–sister bond" },
+          { name: "Janmashtami", date: "Aug 4", detail: "Birth of Lord Krishna" }
+        ]
+      },
+      {
+        name: "September",
+        festivals: ["Ganesh Chaturthi"],
+        description: "September includes the Ganesh festival.",
+        poojas: [
+          { name: "Ganesh Chaturthi", date: "Sep 14", detail: "Festival of Lord Ganesha" }
+        ]
+      },
+      {
+        name: "October",
+        festivals: ["Navratri", "Dussehra"],
+        description: "Autumn festivals celebrating goddess and victory of good over evil.",
+        poojas: [
+          { name: "Navratri Begins", date: "Oct 11", detail: "Nine nights of goddess worship" },
+          { name: "Dussehra", date: "Oct 20", detail: "Victory of Rama over Ravana" }
+        ]
+      },
+      {
+        name: "November",
+        festivals: ["Dhanteras", "Diwali", "Govardhan Puja", "Bhai Dooj", "Chhath Puja"],
+        description: "Festival of lights and harvest observances.",
+        poojas: [
+          { name: "Dhanteras", date: "Nov 6", detail: "Start of Diwali festivities" },
+          { name: "Diwali", date: "Nov 8", detail: "Festival of lights" },
+          { name: "Govardhan Puja", date: "Nov 9/10", detail: "Offering to Lord Krishna" },
+          { name: "Bhai Dooj", date: "Nov 11", detail: "Sibling festival" },
+          { name: "Chhath Puja", date: "Nov 15", detail: "Sun worship festival" }
+        ]
+      },
+      {
+        name: "December",
+        festivals: ["Gita Jayanti", "Christmas"],
+        description: "End of year with spiritual and global festivities.",
+        poojas: [
+          { name: "Gita Jayanti", date: "Dec 20/24", detail: "Day marking Bhagavad Gita revelation / spiritual celebration" },
+          { name: "Christmas", date: "Dec 25", detail: "Celebration of birth of Jesus" }
+        ]
+      }
+  
+    // Baaki months same rakho...
+  ];
+
+  const monthsContainer = document.getElementById("monthsContainer");
+  const selectedMonthTitle = document.getElementById("selectedMonthTitle");
+  const monthDescription = document.getElementById("monthDescription");
+  const poojaList = document.getElementById("poojaList");
+
+  let currentMonthIndex = new Date().getMonth(); // 👈 Current Month Detect
+
+  function renderMonths() {
+    monthsData.forEach((month, index) => {
+      const card = document.createElement("div");
+      card.className = "month-card";
+      card.innerHTML = `
+        <h4>${month.name}</h4>
+      `;
+      card.onclick = () => setActiveMonth(index);
+      monthsContainer.appendChild(card);
+    });
+  }
+
+  function setActiveMonth(index) {
+    currentMonthIndex = index;
+
+    document.querySelectorAll(".month-card")
+      .forEach(c => c.classList.remove("active"));
+
+    monthsContainer.children[index].classList.add("active");
+
+    const month = monthsData[index];
+    selectedMonthTitle.innerHTML =
+      `<i class="fas fa-calendar-alt"></i> ${month.name}`;
+    monthDescription.innerText = month.description;
+
+    poojaList.innerHTML = "";
+
+    month.poojas.forEach(p => {
+      poojaList.innerHTML += `
+        <li>
+          <div>
+            <strong>${p.name}</strong><br>
+            <small>${p.detail}</small>
+            ${
+              p.link
+                ? `<br><a href="${p.link}" class="pooja-btn">View Details</a>`
+                : ""
+            }
+          </div>
+          <span class="pooja-date">${p.date}</span>
+        </li>
+      `;
+    });
+  }
+
+  renderMonths();
+
+  // 👇 Start from current month
+  setActiveMonth(currentMonthIndex);
+
+  const cardWidth = 180;
+
+  monthsContainer.scrollTo({
+    left: currentMonthIndex * cardWidth,
+    behavior: "smooth"
+  });
+
+  /* Slider Buttons */
+  document.getElementById("prevMonth").onclick = () => {
+    if (currentMonthIndex > 0) {
+      currentMonthIndex--;
+      setActiveMonth(currentMonthIndex);
+      monthsContainer.scrollTo({
+        left: currentMonthIndex * cardWidth,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  document.getElementById("nextMonth").onclick = () => {
+    if (currentMonthIndex < monthsData.length - 1) {
+      currentMonthIndex++;
+      setActiveMonth(currentMonthIndex);
+      monthsContainer.scrollTo({
+        left: currentMonthIndex * cardWidth,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  /* Auto Slide from Current Month */
+  setInterval(() => {
+    currentMonthIndex++;
+
+    if (currentMonthIndex >= monthsData.length) {
+      currentMonthIndex = 0;
+    }
+
+    setActiveMonth(currentMonthIndex);
+
+    monthsContainer.scrollTo({
+      left: currentMonthIndex * cardWidth,
+      behavior: "smooth"
+    });
+  }, 16000);
+</script>
+
+  
+
+
+</body>
+
+</html>
