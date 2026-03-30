@@ -6,6 +6,7 @@
   <title>Praynook – Your Spiritual Journey, Simplified & Sacred</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
   <style>
     :root {
@@ -20,21 +21,19 @@
       --text: #3a2a18;
       --muted: #7a6a55;
       --white: #fff;
-      --btn-primary: #4a3520;
+      --btn-primary: #2e652ee8;
       --btn-hover: #2e1f0e;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Nunito', sans-serif;
       background-color: var(--warm-bg);
       color: var(--text);
       overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5 {
-      font-family: 'Cormorant Garamond', serif;
       color: var(--brown-dark);
     }
 
@@ -58,7 +57,7 @@
     .navbar-brand span { color: var(--gold); }
     .nav-link {
       font-family: 'Nunito', sans-serif;
-      font-size: 0.92rem;
+      font-size: 18px;
       color: var(--text) !important;
       font-weight: 600;
       padding: 6px 14px !important;
@@ -78,7 +77,6 @@
 
     /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(120deg, #f5ede0 60%, #e8d5b7 100%);
       min-height: 88vh;
       position: relative;
       overflow: hidden;
@@ -90,13 +88,13 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.4;
+      background: url("./assets/image/banner-hero.png");
+      opacity: 1;
     }
     .hero-text { position: relative; z-index: 2; }
     .hero-text h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 1.15;
+      font-size: 52px;
+    line-height: 72px;
       color: var(--brown-dark);
       margin-bottom: 16px;
     }
@@ -146,13 +144,7 @@
       z-index: 2;
       text-align: center;
     }
-    .hero-pandit-img {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 24px;
-      filter: drop-shadow(0 24px 48px rgba(90,50,10,0.18));
-      animation: floatUp 3s ease-in-out infinite alternate;
-    }
+   
     @keyframes floatUp {
       from { transform: translateY(0); }
       to { transform: translateY(-12px); }
@@ -199,13 +191,17 @@
     }
     .card-icon-placeholder {
       width: 100%;
-      height: 160px;
       border-radius: 10px;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 4rem;
+    }
+    .card-icon-placeholder img{
+      width: 100%;
+      height: 218px;
+      object-fit: cover;
     }
     .pooja-bg { background: linear-gradient(135deg, #f5deb3, #e8c97a); }
     .pandit-bg { background: linear-gradient(135deg, #f0e6d0, #d4b896); }
@@ -264,7 +260,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #d4a835, #b8860b);
+      background: #2e652ee8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -285,6 +281,11 @@
       font-size: 0.9rem;
       text-decoration: none;
       transition: all 0.2s;
+    }
+    .ritual-section{
+       display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px;
     }
     .btn-view-all:hover { background: var(--btn-primary); color: white; }
 
@@ -325,13 +326,15 @@
     .how-section h2 { font-size: 2.2rem; text-align: center; margin-bottom: 48px; }
     .step-card {
       text-align: center;
-      padding: 24px 16px;
+    padding: 18px 12px;
+    background: white;
+    border-radius: 14px;
     }
     .step-num {
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #b8860b, #d4a835);
+      background: #2e652ee8;
       color: white;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem;
@@ -379,7 +382,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #d4a835, #b8860b);
+      background: #2e652ee8;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -463,7 +466,6 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .hero { min-height: auto; padding: 48px 0 36px; }
-      .hero-pandit-img { max-width: 280px; margin-top: 32px; }
       .split-divider { border-left: none; border-top: 2px solid var(--sand); margin-top: 20px; }
     }
 
@@ -523,75 +525,15 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 hero-text fade-up">
-        <h1>Your Spiritual Journey,<br/><em>Simplified & Sacred</em></h1>
+        <h1>Your Spiritual Journey,<br/> Simplified & Sacred</h1>
         <p>From authentic pooja items to trusted Pandit Ji services and ancestral wisdom — Praynook is your companion in devotion.</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#" class="btn-primary-custom">🙏 Book a Pandit Ji</a>
+          <a href="#" class="btn-primary-custom">Book a Pandit Ji</a>
           <a href="#" class="btn-outline-custom">Search Ancestors</a>
         </div>
       </div>
       <div class="col-lg-6 hero-image-col fade-up">
         <!-- Illustrated SVG placeholder (pandit + items) -->
-        <svg class="hero-pandit-img" viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#f5ede0"/>
-              <stop offset="100%" stop-color="#e8d5b7"/>
-            </radialGradient>
-          </defs>
-          <!-- Background circle -->
-          <ellipse cx="210" cy="240" rx="200" ry="220" fill="url(#bgGrad)" opacity="0.6"/>
-          <!-- Temple silhouette -->
-          <rect x="160" y="300" width="100" height="120" fill="#d4b896" rx="4"/>
-          <polygon points="210,260 155,300 265,300" fill="#c49a6c"/>
-          <rect x="190" y="340" width="40" height="80" fill="#b8860b" rx="3"/>
-          <!-- Pandit figure body -->
-          <ellipse cx="210" cy="200" rx="55" ry="65" fill="#f0e0c8"/>
-          <!-- White dhoti -->
-          <rect x="175" y="230" width="70" height="80" fill="#fff" rx="8"/>
-          <!-- Saffron uttariya -->
-          <rect x="175" y="195" width="70" height="40" fill="#d4821a" rx="6"/>
-          <!-- Head -->
-          <circle cx="210" cy="145" r="36" fill="#e8c49a"/>
-          <!-- White beard -->
-          <ellipse cx="210" cy="172" rx="22" ry="16" fill="#fff" opacity="0.9"/>
-          <ellipse cx="210" cy="185" rx="16" ry="12" fill="#fff"/>
-          <!-- Eyes -->
-          <circle cx="200" cy="140" r="4" fill="#3a2a18"/>
-          <circle cx="220" cy="140" r="4" fill="#3a2a18"/>
-          <!-- Tilak -->
-          <rect x="207" y="125" width="6" height="12" fill="#d4821a" rx="2"/>
-          <!-- Rudraksha mala -->
-          <ellipse cx="210" cy="200" rx="42" ry="8" fill="none" stroke="#6b3a1f" stroke-width="4" stroke-dasharray="6 3"/>
-          <!-- Arms -->
-          <rect x="130" y="215" width="46" height="18" rx="9" fill="#f0e0c8" transform="rotate(-20 153 224)"/>
-          <rect x="244" y="215" width="46" height="18" rx="9" fill="#f0e0c8" transform="rotate(20 267 224)"/>
-          <!-- Left hand holding pooja thali -->
-          <ellipse cx="138" cy="250" rx="28" ry="8" fill="#d4a835"/>
-          <circle cx="128" cy="248" r="4" fill="#d4821a"/>
-          <circle cx="138" cy="246" r="4" fill="#c49a2a"/>
-          <circle cx="148" cy="248" r="4" fill="#d4821a"/>
-          <!-- Right hand flower -->
-          <circle cx="282" cy="238" r="10" fill="#ff9966" opacity="0.8"/>
-          <circle cx="282" cy="238" r="5" fill="#ffcc44"/>
-          <!-- Book (scripture) -->
-          <rect x="185" y="290" width="50" height="36" fill="#d4a054" rx="4"/>
-          <line x1="210" y1="290" x2="210" y2="326" stroke="#b8860b" stroke-width="1.5"/>
-          <line x1="188" y1="300" x2="233" y2="300" stroke="#b8860b" stroke-width="0.8"/>
-          <line x1="188" y1="308" x2="233" y2="308" stroke="#b8860b" stroke-width="0.8"/>
-          <!-- Diya lamp -->
-          <ellipse cx="300" cy="360" rx="22" ry="8" fill="#d4a835"/>
-          <ellipse cx="300" cy="355" rx="16" ry="6" fill="#e8c46a"/>
-          <!-- Flame -->
-          <ellipse cx="300" cy="342" rx="5" ry="9" fill="#ff8800" opacity="0.85"/>
-          <ellipse cx="300" cy="340" rx="3" ry="6" fill="#ffdd44"/>
-          <!-- Flowers scattered -->
-          <circle cx="155" cy="370" r="8" fill="#ff9999" opacity="0.7"/>
-          <circle cx="170" cy="380" r="6" fill="#ffcc88" opacity="0.7"/>
-          <circle cx="260" cy="375" r="7" fill="#ff9999" opacity="0.6"/>
-          <!-- OM symbol -->
-          <text x="200" y="440" font-family="serif" font-size="32" fill="#b8860b" opacity="0.5" text-anchor="middle">ॐ</text>
-        </svg>
       </div>
     </div>
   </div>
@@ -603,7 +545,9 @@
     <div class="row g-4">
       <div class="col-md-4 fade-up">
         <div class="feature-card">
-          <div class="card-icon-placeholder pooja-bg">🪔</div>
+          <div class="card-icon-placeholder pooja-bg">
+            <img src="./assets/image/pooja-ess.webp" alt="pooja">
+          </div>
           <h4>Pooja Essentials</h4>
           <p>Authentic samagri, curated kits, idols, rudraksha, and more — delivered with devotion.</p>
           <a href="#" class="btn-card">Shop Now</a>
@@ -611,7 +555,9 @@
       </div>
       <div class="col-md-4 fade-up">
         <div class="feature-card">
-          <div class="card-icon-placeholder pandit-bg">🙏</div>
+          <div class="card-icon-placeholder pandit-bg">
+            <img src="./assets//image/pandit-book.webp" alt="">
+          </div>
           <h4>Book a Pandit Ji</h4>
           <p>Experienced Pandits for home, office, weddings, and special ceremonies across India.</p>
           <a href="#" class="btn-card">Book Now</a>
@@ -619,7 +565,7 @@
       </div>
       <div class="col-md-4 fade-up">
         <div class="feature-card">
-          <div class="card-icon-placeholder ancestry-bg">📜</div>
+          <div class="card-icon-placeholder ancestry-bg"><img src="./assets/image/ancestry-book.jfif" alt=""></div>
           <h4>Ancestry Search</h4>
           <p>Discover your family roots with records from Haridwar, Gaya, Varanasi and more.</p>
           <a href="#" class="btn-card">Search Records</a>
@@ -638,33 +584,35 @@
         <p class="split-label">Pooja Services</p>
         <h2>Sacred Rituals for Every Occasion</h2>
         <p class="mb-4" style="color:var(--muted);font-size:0.9rem;">From Griha Pravesh to Satyanarayan Pooja, from intimate home rituals to grand weddings — find the right Pandit Ji for your specific needs.</p>
-        <div class="service-item">
-          <div class="service-icon">🏠</div>
+        <div class="ritual-section">
+          <div class="service-item">
+          <div class="service-icon"><i class="fa-regular fa-house"></i></div>
           <div>
             <h5>Griha Pravesh</h5>
             <p>Bless your new home with traditional rituals</p>
           </div>
         </div>
         <div class="service-item">
-          <div class="service-icon">🌸</div>
+          <div class="service-icon"><i class="fa-solid fa-hands-praying"></i></div>
           <div>
             <h5>Satyanarayan Pooja</h5>
             <p>Seek blessings for peace and prosperity</p>
           </div>
         </div>
         <div class="service-item">
-          <div class="service-icon">💍</div>
+          <div class="service-icon"><i class="fa-solid fa-ring"></i></div>
           <div>
             <h5>Wedding Rituals</h5>
             <p>Complete Vedic marriage ceremonies</p>
           </div>
         </div>
         <div class="service-item">
-          <div class="service-icon">🕉️</div>
+          <div class="service-icon"><i class="fa-solid fa-om"></i></div>
           <div>
             <h5>Shraddh & Pind Daan</h5>
             <p>Honor your ancestors with sacred rites</p>
           </div>
+        </div>
         </div>
         <a href="#" class="btn-view-all">View All Pooja Services</a>
       </div>
