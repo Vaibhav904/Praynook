@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ancestry Match Results – Praynook</title>
+    <link rel="stylesheet" href="./style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet" />
+    <style>
+    :root {
+      --cream: #f5ede0;
+      --warm-bg: #fdf6ed;
+      --sand: #e8d5b7;
+      --gold: #b8860b;
+      --gold-light: #d4a835;
+      --brown: #5c3a1e;
+      --brown-dark: #3e2510;
+      --muted: #7a6a55;
+      --white: #fff;
+      --btn-primary: #4a3520;
+      --btn-hover: #2e1f0e;
+      --green: #4a7c59;
+      --green-light: #e8f5e9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: var(--warm-bg); color: var(--text); overflow-x: hidden; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Cormorant Garamond', serif; color: var(--brown-dark); }
+
+    /* ===== HERO ===== */
+    .results-hero {
+      position: relative;
+      background: linear-gradient(110deg, #f5ede0 52%, #e8d5b7 100%);
+      overflow: hidden;
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--sand);
+    }
+    .results-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("./image/booking-bg.webp");
+          background-position: center;
+    }
+    .hero-z { position: relative; z-index: 2; }
+    .results-hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; margin-bottom: 10px; }
+    .results-hero p { font-size: 0.93rem; color: #000; max-width: 460px; line-height: 1.65; margin-bottom: 22px; }
+    .btn-primary-c {
+      background: var(--btn-primary); color: var(--white); border: none; border-radius: 7px;
+      padding: 11px 24px; font-weight: 700; font-size: 0.92rem; font-family: 'Nunito', sans-serif;
+      cursor: pointer; transition: background .2s, transform .15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-primary-c:hover { background: var(--btn-hover); color: var(--white); transform: translateY(-2px); }
+    .btn-outline-c {
+      background: transparent; color: var(--brown-dark); border: 2px solid var(--brown-dark); border-radius: 7px;
+      padding: 10px 22px; font-weight: 700; font-size: 0.92rem; font-family: 'Nunito', sans-serif;
+      cursor: pointer; transition: all .2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-left: 10px;
+    }
+    .btn-outline-c:hover { background: var(--btn-primary); color: var(--white); border-color: var(--btn-primary); }
+
+    /* Success rate bar */
+    .success-bar {
+      background: var(--white);
+      border: 1.5px solid var(--sand);
+      border-radius: 12px;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 20px;
+      max-width: 560px;
+    }
+    .success-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--muted); }
+    .success-item .check-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .success-item strong { color: var(--brown-dark); font-size: 0.95rem; }
+
+    /* Hero right pandit image */
+    .hero-img-col { position: relative; text-align: right; }
+
+    /* ===== MAIN ===== */
+    .main-wrap { padding: 36px 0 60px; }
+
+    /* ===== PANDIT RESULT CARD ===== */
+    .pandit-card {
+      background: var(--white);
+      border: 1.5px solid var(--sand);
+      border-radius: 16px;
+      padding: 22px 20px 16px;
+      margin-bottom: 18px;
+      transition: box-shadow .25s, border-color .2s;
+      position: relative;
+    }
+    .pandit-card:hover { box-shadow: 0 8px 32px rgba(90,50,10,0.11); border-color: var(--gold-light); }
+    .pandit-card.top-match { border-color: var(--gold); background: linear-gradient(135deg, #fffdf8, #fdf6ed); }
+
+    .card-top-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+    .pandit-avatar {
+      width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
+      overflow: hidden; border: 2.5px solid var(--sand);
+      background: linear-gradient(135deg, #f5deb3, #e8c97a);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pandit-info { flex: 1; }
+    .pandit-info h4 { font-size: 1.25rem; margin-bottom: 3px; }
+    .pandit-loc { font-size: 0.82rem; color: var(--muted); margin-bottom: 5px; }
+    .pandit-loc i { color: var(--gold); margin-right: 3px; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px; }
+    .meta-row span { display: flex; align-items: center; gap: 5px; }
+    .meta-row i { color: var(--gold-light); }
+    .speciality-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--cream); border: 1px solid var(--sand);
+      border-radius: 20px; padding: 3px 12px; font-size: 0.78rem;
+      color: var(--brown); font-weight: 600; margin-right: 6px; margin-top: 4px;
+    }
+    .extra-tags { margin-top: 6px; }
+    .extra-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.8rem; color: var(--muted); margin-right: 12px;
+    }
+    .extra-tag i { color: var(--green); }
+
+    /* Match score badge */
+    .match-score-box {
+      min-width: 130px; text-align: center;
+      border-radius: 10px; padding: 10px 14px;
+      background: var(--btn-primary); color: var(--white);
+      flex-shrink: 0;
+    }
+    .match-score-box .match-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: 0.75; margin-bottom: 2px; display: flex; justify-content: space-between; }
+    .match-score-box .match-pct { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+    .match-score-box .match-level { font-size: 0.75rem; font-weight: 700; margin-top: 2px; }
+    .match-progress { width: 100%; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.2); margin-top: 6px; overflow: hidden; }
+    .match-progress-fill { height: 100%; border-radius: 3px; background: var(--gold-light); }
+
+    /* Rating */
+    .rating-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 0.85rem; }
+    .stars-gold { color: var(--gold-light); }
+    .rating-num { font-weight: 700; color: var(--brown-dark); }
+    .reviews-count { color: var(--muted); font-size: 0.8rem; }
+    .reviews-count i { color: var(--green); }
+
+    /* CTA buttons */
+    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--sand); }
+    .btn-talk {
+      flex: 1; min-width: 120px; background: var(--btn-primary); color: var(--white);
+      border: none; border-radius: 7px; padding: 10px 14px; font-size: 0.87rem; font-weight: 700;
+      font-family: 'Nunito', sans-serif; cursor: pointer; transition: background .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-talk:hover { background: var(--btn-hover); }
+    .btn-whatsapp {
+      flex: 1; min-width: 120px; background: #25D366; color: var(--white);
+      border: none; border-radius: 7px; padding: 10px 14px; font-size: 0.87rem; font-weight: 700;
+      font-family: 'Nunito', sans-serif; cursor: pointer; transition: background .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-whatsapp:hover { background: #1da855; }
+    .btn-schedule {
+      flex: 1; min-width: 120px; background: var(--cream); color: var(--brown-dark);
+      border: 1.5px solid var(--sand); border-radius: 7px; padding: 10px 14px; font-size: 0.87rem; font-weight: 700;
+      font-family: 'Nunito', sans-serif; cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-schedule:hover { background: var(--sand); }
+    .btn-moreinfo {
+      flex: 1; min-width: 120px; background: #f0e6d0; color: var(--brown-dark);
+      border: 1.5px solid var(--sand); border-radius: 7px; padding: 10px 14px; font-size: 0.87rem; font-weight: 700;
+      font-family: 'Nunito', sans-serif; cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-moreinfo:hover { background: var(--sand); }
+
+    /* Availability note */
+    .avail-note {
+      text-align: center; font-size: 0.8rem; color: var(--muted);
+      margin-top: 10px; font-style: italic;
+    }
+    .avail-note i { color: var(--gold); }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar-box {
+      background: var(--white);
+      border: 1.5px solid var(--sand);
+      border-radius: 14px;
+      padding: 20px 18px;
+      margin-bottom: 18px;
+    }
+    .sidebar-box h5 { font-size: 1.1rem; margin-bottom: 14px; }
+
+    /* Popular places */
+    .places-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .place-chip {
+      background: var(--cream); border: 1.5px solid var(--sand);
+      border-radius: 20px; padding: 5px 16px; font-size: 0.82rem;
+      font-weight: 600; color: var(--brown); cursor: pointer; transition: all .2s;
+    }
+    .place-chip:hover, .place-chip.active { background: var(--btn-primary); color: var(--white); border-color: var(--btn-primary); }
+
+    /* Video thumbnail */
+    .video-thumb {
+      position: relative; border-radius: 12px; overflow: hidden;
+      background: linear-gradient(135deg, #d4b896, #c49a6c);
+      height: 150px; cursor: pointer; margin: 12px 0 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-thumb::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23c49a6c'/%3E%3Crect x='20' y='20' width='160' height='110' fill='%23d4b896' rx='4'/%3E%3Ctext x='100' y='85' text-anchor='middle' font-size='40' fill='%23b8860b' opacity='0.4'%3E📜%3C/text%3E%3C/svg%3E") center/cover;
+    }
+    .play-btn {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--btn-primary); position: relative; z-index: 2;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18); transition: transform .2s;
+    }
+    .play-btn:hover { transform: scale(1.1); }
+    .video-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+    .samsi-badge {
+      display: inline-block; background: var(--gold); color: var(--white);
+      border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; margin-right: 6px;
+    }
+    .btn-play-guide {
+      width: 100%; background: var(--btn-primary); color: var(--white);
+      border: none; border-radius: 8px; padding: 12px; font-weight: 700;
+      font-size: 0.92rem; font-family: 'Nunito', sans-serif; cursor: pointer;
+      transition: background .2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-play-guide:hover { background: var(--btn-hover); }
+
+    /* How Pandits find records */
+    .how-thumb {
+      border-radius: 10px; overflow: hidden; margin: 10px 0;
+      background: linear-gradient(135deg, #e8d5b7, #c9a87c);
+      height: 110px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .sample-record { font-size: 0.8rem; color: var(--muted); }
+    .sample-record i { color: var(--gold-light); margin-right: 4px; }
+
+    /* Trust */
+    .trust-item-s {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.87rem; color: var(--brown-dark); margin-bottom: 8px; font-weight: 600;
+    }
+    .trust-item-s i { color: var(--green); font-size: 1rem; }
+
+    /* Why trust */
+    .why-trust-box {
+      background: var(--btn-primary); border-radius: 14px; padding: 20px 18px;
+    }
+    .why-trust-box h5 { color: var(--white) !important; font-size: 1.1rem; margin-bottom: 14px; }
+    .wt-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #e8d5b7; margin-bottom: 8px; }
+    .wt-item i { color: var(--gold-light); }
+    .btn-top-match {
+      width: 100%; background: var(--gold-light); color: var(--brown-dark);
+      border: none; border-radius: 8px; padding: 13px; font-weight: 700;
+      font-size: 0.95rem; font-family: 'Nunito', sans-serif; cursor: pointer;
+      margin-top: 14px; transition: background .2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-top-match:hover { background: var(--gold); }
+
+    /* Fade animation */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--btn-primary); color: #fff;
+      padding: 13px 20px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600; z-index: 9999;
+      display: none; box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      border-left: 4px solid var(--gold-light);
+    }
+
+    @media(max-width:768px) {
+      .card-top-row { flex-wrap: wrap; }
+      .match-score-box { min-width: 110px; }
+      .card-actions { flex-direction: column; }
+      .btn-talk, .btn-whatsapp, .btn-schedule, .btn-moreinfo { flex: none; width: 100%; }
+    }
+  </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">Pray<span>nook</span> 🪔</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="bi bi-list fs-2" style="color:var(--brown-dark)"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1">
+        <li class="nav-item"><a class="nav-link active" href="../index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pooja Services</a>
+          <ul class="dropdown-menu border-0 shadow" style="background:var(--cream)">
+            <li><a class="dropdown-item" href="#">Griha Pravesh</a></li>
+            <li><a class="dropdown-item" href="#">Satyanarayan Pooja</a></li>
+            <li><a class="dropdown-item" href="#">Wedding Rituals</a></li>
+            <li><a class="dropdown-item" href="#">Shraddh & Pind Daan</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ancestry Search</a>
+          <ul class="dropdown-menu border-0 shadow" style="background:var(--cream)">
+            <li><a class="dropdown-item" href="#">Haridwar Records</a></li>
+            <li><a class="dropdown-item" href="#">Gaya Records</a></li>
+            <li><a class="dropdown-item" href="#">Varanasi Records</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+      <a href="#" class="nav-link btn-login">Login / Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="results-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 hero-z fade-up">
+            <h1>Your Ancestry Match Results</h1>
+            <p>Based on your details (Dwivedi, Uttar Pradesh, Gaya region), we
+              found the most relevant Pandits for your lineage search.</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="#" class="btn-primary-c">🙏 Book a Pandit Ji</a>
+              <a href="#" class="btn-outline-c">🔍 Search Ancestors</a>
+            </div>
+            <div class="success-bar fade-up">
+              <div class="success-item">
+                <div class="check-circle"><i class="bi bi-check-lg"></i></div>
+                <div><strong>78% avg success rate</strong><br />for similar
+                  searches</div>
+              </div>
+              <div class="success-item">
+                <div class="check-circle"><i class="bi bi-check-lg"></i></div>
+                <div><strong>78% avg</strong> success rate for similar
+                  searches.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 hero-z text-center fade-up">
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section class="main-wrap">
+      <div class="container">
+        <div class="row g-4">
+
+          <!-- LEFT: Pandit Cards -->
+          <div class="col-lg-7">
+
+            <!-- Card 1: Pt. Rajesh Mishra (Top Match) -->
+            <div class="pandit-card top-match fade-up">
+              <div class="card-top-row">
+                <div class="pandit-avatar">
+                  <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"
+                    width="70" height="70">
+                    <circle cx="35" cy="35" r="34" fill="#f5deb3" />
+                    <circle cx="35" cy="25" r="13" fill="#e8c49a" />
+                    <ellipse cx="35" cy="37" rx="11" ry="8" fill="#f5f5f5" />
+                    <ellipse cx="35" cy="46" rx="9" ry="6" fill="#f5f5f5" />
+                    <ellipse cx="35" cy="55" rx="20" ry="14" fill="#f0e0c8" />
+                    <rect x="23" y="43" width="24" height="22" fill="#fff"
+                      rx="4" />
+                    <rect x="23" y="38" width="24" height="10" fill="#d4821a"
+                      rx="4" />
+                    <rect x="32" y="16" width="5" height="9" fill="#d4821a"
+                      rx="2" />
+                  </svg>
+                </div>
+                <div class="pandit-info">
+                  <h4>Pt. Rajesh Mishra</h4>
+                  <p class="pandit-loc"><i class="bi bi-geo-alt-fill"></i>Gaya,
+                    Bihar</p>
+                  <div class="meta-row">
+                    <span><i class="bi bi-calendar3"></i>85 years · Specializes
+                      in</span>
+                  </div>
+                  <div>
+                    <span class="speciality-tag"><i class="bi bi-book"></i>Pind
+                      Daan, ancestral registers</span>
+                  </div>
+                  <div class="extra-tags">
+                    <span class="extra-tag"><i
+                        class="bi bi-people-fill"></i>Same caste lineage
+                      (Dwivedi)</span>
+                    <span class="extra-tag"><i
+                        class="bi bi-journal-text"></i>Handles Gaya ancestral
+                      registers</span>
+                    <span class="extra-tag"><i class="bi bi-award"></i>200+
+                      successful lineage matches</span>
+                  </div>
+                  <div class="rating-row">
+                    <span class="stars-gold">★★★★★</span>
+                    <span class="rating-num">4.8</span>
+                    <span class="reviews-count"><i
+                        class="bi bi-check-circle-fill"></i> Ratings: 132
+                      reviews</span>
+                  </div>
+                </div>
+                <div class="match-score-box">
+                  <div
+                    class="match-label"><span>MATCH</span><span>SCORE</span></div>
+                  <div class="match-pct">92%</div>
+                  <div class="match-level" style="color:var(--gold-light)">Very
+                    High</div>
+                  <div class="match-progress"><div class="match-progress-fill"
+                      style="width:92%"></div></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-talk"
+                  onclick="showToast('📞 Connecting to Pt. Rajesh Mishra...')">
+                  <i class="bi bi-telephone-fill"></i> Talk to Pandit
+                </button>
+                <button class="btn-whatsapp"
+                  onclick="showToast('💬 Opening WhatsApp...')">
+                  <i class="bi bi-whatsapp"></i> WhatsApp Now
+                </button>
+                <button class="btn-schedule"
+                  onclick="showToast('📅 Opening scheduler...')">
+                  <i class="bi bi-calendar-check"></i> Schedule Call
+                </button>
+              </div>
+              <div class="avail-note"><i class="bi bi-clock"></i> Only 2 Pandits
+                available today for your region</div>
+            </div>
+
+            <!-- Card 2: Pt. Anil Dwivedi -->
+            <div class="pandit-card fade-up">
+              <div class="card-top-row">
+                <div class="pandit-avatar">
+                  <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"
+                    width="70" height="70">
+                    <circle cx="35" cy="35" r="34" fill="#e8d5b7" />
+                    <circle cx="35" cy="25" r="12" fill="#deb887" />
+                    <ellipse cx="35" cy="36" rx="10" ry="7" fill="#f0f0f0" />
+                    <ellipse cx="35" cy="44" rx="8" ry="5" fill="#f0f0f0" />
+                    <ellipse cx="35" cy="53" rx="19" ry="13" fill="#e0c8a0" />
+                    <rect x="24" y="42" width="22" height="20" fill="#fff"
+                      rx="4" />
+                    <rect x="24" y="37" width="22" height="9" fill="#b8860b"
+                      rx="3" />
+                  </svg>
+                </div>
+                <div class="pandit-info">
+                  <h4>Pt. Anil Dwivedi</h4>
+                  <p class="pandit-loc"><i
+                      class="bi bi-geo-alt-fill"></i>Varanasi, Uttar Pradesh</p>
+                  <div class="meta-row">
+                    <span><i class="bi bi-calendar3"></i>25 years · Specializes
+                      Pind Daan 🔥</span>
+                  </div>
+                  <div class="extra-tags">
+                    <span class="extra-tag"><i
+                        class="bi bi-journal-text"></i>Binolinc topsynesis a
+                      registers</span>
+                  </div>
+                  <div class="rating-row">
+                    <span class="stars-gold">★★★★</span>
+                    <span class="rating-num">84%</span>
+                    <span class="reviews-count"><i
+                        class="bi bi-check-circle-fill"></i> 341 reviews</span>
+                  </div>
+                </div>
+                <div class="match-score-box" style="background:#3a6640;">
+                  <div
+                    class="match-label"><span>MATCH</span><span>SCORE</span></div>
+                  <div class="match-pct">87%</div>
+                  <div class="match-level" style="color:#a8e6b4;">High</div>
+                  <div class="match-progress"><div class="match-progress-fill"
+                      style="width:87%;background:#a8e6b4;"></div></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-talk"
+                  onclick="showToast('📞 Connecting to Pt. Anil Dwivedi...')">
+                  <i class="bi bi-telephone-fill"></i> Talk to Pandit
+                </button>
+                <button class="btn-whatsapp"
+                  onclick="showToast('💬 Opening WhatsApp...')">
+                  <i class="bi bi-whatsapp"></i> WhatsApp Now
+                </button>
+                <button class="btn-moreinfo"
+                  onclick="showToast('ℹ️ Loading more info...')">
+                  <i class="bi bi-info-circle"></i> More Info
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3: Pt. Shyam Satyarthi -->
+            <div class="pandit-card fade-up">
+              <div class="card-top-row">
+                <div class="pandit-avatar">
+                  <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"
+                    width="70" height="70">
+                    <circle cx="35" cy="35" r="34" fill="#f0e6d0" />
+                    <circle cx="35" cy="24" r="12" fill="#c8a070" />
+                    <ellipse cx="35" cy="35" rx="10" ry="7" fill="#e8e8e8" />
+                    <ellipse cx="35" cy="43" rx="8" ry="5" fill="#e8e8e8" />
+                    <ellipse cx="35" cy="52" rx="19" ry="13" fill="#d4b896" />
+                    <rect x="24" y="41" width="22" height="20" fill="#f5f5f5"
+                      rx="4" />
+                    <rect x="24" y="36" width="22" height="9" fill="#8b6914"
+                      rx="3" />
+                  </svg>
+                </div>
+                <div class="pandit-info">
+                  <h4>Pt. Shyam Satyarthi</h4>
+                  <p class="pandit-loc"><i class="bi bi-geo-alt-fill"></i>Gaya,
+                    Bihar</p>
+                  <div class="meta-row">
+                    <span><i class="bi bi-calendar3"></i>32 years · Specializes
+                      Pind Daan</span>
+                  </div>
+                  <div class="extra-tags">
+                    <span class="extra-tag"><i
+                        class="bi bi-journal-text"></i>Pind Daan, ancestral
+                      registers</span>
+                  </div>
+                  <div class="rating-row">
+                    <span class="stars-gold">★★★★</span>
+                    <span class="rating-num">80%</span>
+                    <span class="reviews-count"><i
+                        class="bi bi-check-circle-fill"></i> 155 reviews</span>
+                  </div>
+                </div>
+                <div class="match-score-box" style="background:#3a6640;">
+                  <div
+                    class="match-label"><span>MATCH</span><span>SCORE</span></div>
+                  <div class="match-pct">84%</div>
+                  <div class="match-level" style="color:#a8e6b4;">High</div>
+                  <div class="match-progress"><div class="match-progress-fill"
+                      style="width:84%;background:#a8e6b4;"></div></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-talk"
+                  onclick="showToast('📞 Connecting to Pt. Shyam Satyarthi...')">
+                  <i class="bi bi-telephone-fill"></i> Talk to Pandit
+                </button>
+                <button class="btn-whatsapp"
+                  onclick="showToast('💬 Opening WhatsApp...')">
+                  <i class="bi bi-whatsapp"></i> WhatsApp Now
+                </button>
+                <button class="btn-moreinfo"
+                  onclick="showToast('ℹ️ Loading more info...')">
+                  <i class="bi bi-info-circle"></i> More Info
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 4: Pt. Vinod Pandey -->
+            <div class="pandit-card fade-up">
+              <div class="card-top-row">
+                <div class="pandit-avatar">
+                  <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"
+                    width="70" height="70">
+                    <circle cx="35" cy="35" r="34" fill="#e8d5b7" />
+                    <circle cx="35" cy="24" r="11" fill="#b8875a" />
+                    <ellipse cx="35" cy="34" rx="9" ry="6" fill="#d0d0d0" />
+                    <ellipse cx="35" cy="42" rx="7" ry="5" fill="#d0d0d0" />
+                    <ellipse cx="35" cy="51" rx="18" ry="13" fill="#c8a07a" />
+                    <rect x="25" y="40" width="20" height="20" fill="#f0f0f0"
+                      rx="4" />
+                    <rect x="25" y="35" width="20" height="9" fill="#c47020"
+                      rx="3" />
+                  </svg>
+                </div>
+                <div class="pandit-info">
+                  <h4>Pt. Vinod Pandey</h4>
+                  <p class="pandit-loc"><i
+                      class="bi bi-geo-alt-fill"></i>Haridwar, Uttarakhand</p>
+                  <div class="meta-row">
+                    <span><i class="bi bi-calendar3"></i>35 years · Specializing
+                      informational rentrgys</span>
+                  </div>
+                  <div class="extra-tags">
+                    <span class="extra-tag"><i
+                        class="bi bi-journal-text"></i>Ancestral regiatta
+                      cheansors</span>
+                  </div>
+                  <div class="rating-row">
+                    <span class="stars-gold">★★★★</span>
+                    <span class="rating-num">80%</span>
+                    <span class="reviews-count"><i
+                        class="bi bi-check-circle-fill"></i> 155 reviews</span>
+                  </div>
+                </div>
+                <div class="match-score-box" style="background:#6a5020;">
+                  <div
+                    class="match-label"><span>MATCH</span><span>SCORE</span></div>
+                  <div class="match-pct">80%</div>
+                  <div class="match-level" style="color:#f5d78a;">Moderate</div>
+                  <div class="match-progress"><div class="match-progress-fill"
+                      style="width:80%;background:#f5d78a;"></div></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-talk"
+                  onclick="showToast('📞 Connecting to Pt. Vinod Pandey...')">
+                  <i class="bi bi-telephone-fill"></i> Talk to Pandit
+                </button>
+                <button class="btn-whatsapp"
+                  onclick="showToast('💬 Opening WhatsApp...')">
+                  <i class="bi bi-whatsapp"></i> WhatsApp Now
+                </button>
+                <button class="btn-moreinfo"
+                  onclick="showToast('ℹ️ Loading more info...')">
+                  <i class="bi bi-info-circle"></i> More Info
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 5: Pt. Suresh Tripathi -->
+            <div class="pandit-card fade-up">
+              <div class="card-top-row">
+                <div class="pandit-avatar">
+                  <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg"
+                    width="70" height="70">
+                    <circle cx="35" cy="35" r="34" fill="#f0ddc0" />
+                    <circle cx="35" cy="24" r="11" fill="#a07848" />
+                    <ellipse cx="35" cy="34" rx="9" ry="6" fill="#c0c0c0" />
+                    <ellipse cx="35" cy="42" rx="7" ry="5" fill="#c0c0c0" />
+                    <ellipse cx="35" cy="51" rx="18" ry="13" fill="#b89060" />
+                    <rect x="25" y="40" width="20" height="20" fill="#f8f8f8"
+                      rx="4" />
+                    <rect x="25" y="35" width="20" height="9" fill="#8b6010"
+                      rx="3" />
+                  </svg>
+                </div>
+                <div class="pandit-info">
+                  <h4>Pt. Suresh Tripathi</h4>
+                  <p class="pandit-loc"><i
+                      class="bi bi-geo-alt-fill"></i>Varanasi, Uttar Pradesh</p>
+                  <div class="meta-row">
+                    <span><i class="bi bi-calendar3"></i>39 years · Specializes
+                      titis opllreghines</span>
+                  </div>
+                  <div class="extra-tags">
+                    <span class="extra-tag"><i
+                        class="bi bi-journal-text"></i>Bittnai; sive ttegerk
+                      scrroa charloigh teros.</span>
+                  </div>
+                  <div class="rating-row">
+                    <span class="stars-gold">★★★★</span>
+                    <span class="rating-num">76%</span>
+                    <span class="reviews-count"><i
+                        class="bi bi-check-circle-fill"></i> 155 reviews</span>
+                  </div>
+                </div>
+                <div class="match-score-box" style="background:#6a5020;">
+                  <div
+                    class="match-label"><span>MATCH</span><span>SCORE</span></div>
+                  <div class="match-pct">76%</div>
+                  <div class="match-level" style="color:#f5d78a;">Moderate</div>
+                  <div class="match-progress"><div class="match-progress-fill"
+                      style="width:76%;background:#f5d78a;"></div></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-talk"
+                  onclick="showToast('📞 Connecting to Pt. Suresh Tripathi...')">
+                  <i class="bi bi-telephone-fill"></i> Talk to Pandit
+                </button>
+                <button class="btn-whatsapp"
+                  onclick="showToast('💬 Opening WhatsApp...')">
+                  <i class="bi bi-whatsapp"></i> WhatsApp Now
+                </button>
+                <button class="btn-moreinfo"
+                  onclick="showToast('ℹ️ Loading more info...')">
+                  <i class="bi bi-info-circle"></i> More Info
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /left col -->
+
+          <!-- RIGHT SIDEBAR -->
+          <div class="col-lg-5">
+
+            <!-- Popular Places -->
+            <div class="sidebar-box fade-up">
+              <h5>Popular Places</h5>
+              <div class="places-wrap">
+                <span class="place-chip active"
+                  onclick="togglePlace(this)">Gaya</span>
+                <span class="place-chip"
+                  onclick="togglePlace(this)">Haridwar</span>
+                <span class="place-chip"
+                  onclick="togglePlace(this)">Varanasi</span>
+                <span class="place-chip"
+                  onclick="togglePlace(this)">Ujjain</span>
+              </div>
+            </div>
+
+            <!-- Video -->
+            <div class="sidebar-box fade-up">
+              <div class="video-thumb"
+                onclick="showToast('▶️ Playing guide video...')">
+                <div class="play-btn"><i class="bi bi-play-fill"></i></div>
+              </div>
+              <p class="video-label">
+                <span class="samsi-badge">SamsiRed</span>
+                Your Ancestral Records
+              </p>
+              <button class="btn-play-guide"
+                onclick="showToast('▶️ Playing guide video...')">
+                <i class="bi bi-play-circle-fill"></i> Play Guide-Video
+              </button>
+            </div>
+
+            <!-- How Pandits Find Records -->
+            <div class="sidebar-box fade-up">
+              <h5>How Pandits Find<br />Your Ancestral Records</h5>
+              <div class="how-thumb">📜</div>
+              <p class="sample-record"><i class="bi bi-link-45deg"></i>Sample
+                Record – 1Eka380s+</p>
+            </div>
+
+            <!-- Trust Our Devotees -->
+            <div class="sidebar-box fade-up">
+              <h5>Trust our Devotees</h5>
+              <div class="trust-item-s"><i class="bi bi-shield-lock-fill"></i>
+                Secure & Private Data</div>
+              <div class="trust-item-s"><i class="bi bi-patch-check-fill"></i>
+                Verified Pandits Only</div>
+              <div class="trust-item-s"><i class="bi bi-journal-richtext"></i>
+                Authentic Handwritten Records</div>
+            </div>
+
+            <!-- Why Trust Praynook -->
+            <div class="why-trust-box fade-up">
+              <h5>Why Trust Praynook 🍃</h5>
+              <div class="wt-item"><i class="bi bi-shield-lock-fill"></i> Secure
+                & Private Data</div>
+              <div class="wt-item"><i class="bi bi-patch-check-fill"></i>
+                Verified Pandits Only</div>
+              <div class="wt-item"><i class="bi bi-journal-richtext"></i>
+                Authentic Handwritten Records</div>
+              <button class="btn-top-match"
+                onclick="showToast('🙏 Connecting to top match Pandit...')">
+                🙏 Talk to Top Match Now
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="brand">Pray<span>nook</span> 🪔</div>
+        <p>Your trusted companion for pooja services, authentic samagri, Pandit Ji booking, and ancestral record discovery — all in one sacred platform.</p>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6>Pooja Services</h6>
+        <a href="#">Griha Pravesh</a>
+        <a href="#">Wedding Rituals</a>
+        <a href="#">Satyanarayan</a>
+        <a href="#">Pind Daan</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6>Ancestry</h6>
+        <a href="#">Search Records</a>
+        <a href="#">Haridwar</a>
+        <a href="#">Gaya</a>
+        <a href="#">Varanasi</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6>Shop</h6>
+        <a href="#">Pooja Kits</a>
+        <a href="#">Rudraksha</a>
+        <a href="#">Idols</a>
+        <a href="#">Samagri</a>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h6>Company</h6>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Community</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="copy">© 2025 Praynook. Crafted with devotion. All rights reserved.</div>
+  </div>
+</footer>
+    <!-- Toast -->
+    <div id="toast">
+      <i class="bi bi-check-circle-fill me-2"
+        style="color:var(--gold-light)"></i>
+      <span id="toastMsg"></span>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  // Fade up
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => obs.observe(el));
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.style.display = 'flex';
+    t.style.alignItems = 'center';
+    setTimeout(() => t.style.display = 'none', 3000);
+  }
+
+  function togglePlace(el) {
+    document.querySelectorAll('.place-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    showToast('🗺️ Filtering by ' + el.textContent);
+  }
+</script>
+  </body>
+</html>
