@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pt. Ramesh Sharma Ji – Praynook</title>
+    <link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:   #d4a373;
+      --cream:  #f5e8bd;
+      --deep:   #3b2a1a;
+      --mid:    #7a5c3a;
+      --light:  #fdf6e3;
+      --white:  #ffffff;
+      --shadow: rgba(212,163,115,0.18);
+    }
+    /* HERO */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--deep) 0%, #5c3d20 60%, var(--mid) 100%);
+      padding: 60px 0 0; position: relative; overflow: hidden;
+    }
+    .hero-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a373' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-om { font-size: 7rem; color: rgba(212,163,115,0.10); position: absolute; right: 8%; top: 10%; font-family: 'Playfair Display', serif; pointer-events: none; }
+    .profile-card-hero { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap; }
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+    .avatar-img {
+      width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--gold);
+      background: var(--cream); display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; color: var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+    .avatar-badge { position: absolute; bottom: 6px; right: 6px; background: #27ae60; width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--white); }
+    .hero-info { padding-bottom: 8px; }
+    .hero-info h1 { font-family: 'Playfair Display', serif; font-size: 2.1rem; color: var(--cream); margin-bottom: 4px; }
+    .hero-info .subtitle { color: var(--gold); font-size: .92rem; font-weight: 500; margin-bottom: 10px; }
+    .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-tag { background: rgba(212,163,115,.18); border: 1px solid rgba(212,163,115,.4); color: var(--cream); border-radius: 50px; padding: 4px 14px; font-size: .75rem; font-weight: 500; }
+    .verified-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(39,174,96,.12); border: 1px solid rgba(39,174,96,.3); color: #27ae60; border-radius: 50px; padding: 4px 12px; font-size: .72rem; font-weight: 600; margin-top: 8px; }
+    .hero-actions { margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; padding-bottom: 8px; }
+    .btn-call { background: linear-gradient(135deg, #27ae60, #1e8449); color: var(--white); border: none; border-radius: 50px; padding: 13px 28px; font-weight: 600; font-size: .9rem; cursor: pointer; transition: all .3s; box-shadow: 0 4px 16px rgba(39,174,96,.4); white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-call:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(39,174,96,.5); color: var(--white); }
+
+    /* STATS */
+    .stats-bar { background: var(--white); border-bottom: 2px solid var(--cream); box-shadow: 0 4px 16px var(--shadow); }
+    .stat-item { text-align: center; padding: 18px 10px; border-right: 1px solid var(--cream); transition: background .2s; }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--light); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); font-weight: 700; }
+    .stat-label { font-size: .72rem; color: var(--mid); font-weight: 500; text-transform: uppercase; letter-spacing: .6px; margin-top: 3px; }
+
+    /* MAIN */
+    .main-content { padding: 40px 0 60px; }
+
+    /* SECTION CARD */
+    .section-card { background: var(--white); border-radius: 16px; border: 1px solid var(--cream); padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 16px var(--shadow); transition: box-shadow .3s; animation: fadeUp .45s ease both; }
+    .section-card:hover { box-shadow: 0 6px 28px rgba(212,163,115,.22); }
+    .section-card:nth-child(1){animation-delay:.05s}.section-card:nth-child(2){animation-delay:.12s}.section-card:nth-child(3){animation-delay:.19s}.section-card:nth-child(4){animation-delay:.26s}.section-card:nth-child(5){animation-delay:.33s}
+    .section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--cream); display: flex; align-items: center; gap: 10px; }
+    .section-title i { color: var(--gold); font-size: 1rem; }
+    .about-text { font-size: .9rem; line-height: 1.8; color: var(--mid); }
+
+    /* PHONE CARD */
+    .phone-card { background: linear-gradient(135deg, var(--deep) 0%, #5c3d20 100%); border-radius: 14px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; box-shadow: 0 6px 24px rgba(59,42,26,.3); }
+    .phone-card-left { display: flex; align-items: center; gap: 16px; }
+    .phone-icon-wrap { width: 52px; height: 52px; background: rgba(212,163,115,.2); border: 1.5px solid rgba(212,163,115,.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--gold); }
+    .phone-card-label { font-size: .75rem; color: rgba(245,232,189,.6); font-weight: 500; }
+    .phone-card-number { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--cream); font-weight: 700; letter-spacing: 1px; }
+    .phone-card-sub { font-size: .75rem; color: rgba(245,232,189,.5); margin-top: 2px; }
+
+    /* INFO ROWS */
+    .info-row { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--cream); }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--light); border: 1.5px solid var(--cream); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: .95rem; flex-shrink: 0; margin-top: 2px; }
+    .info-label { font-size: .73rem; color: #aaa; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+    .info-value { font-size: .9rem; color: var(--deep); font-weight: 500; margin-top: 2px; }
+
+    /* SPEC */
+    .spec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 12px; }
+    .spec-item { background: var(--light); border: 1.5px solid var(--cream); border-radius: 12px; padding: 14px 10px; text-align: center; transition: all .25s; }
+    .spec-item:hover { background: var(--cream); border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 4px 14px var(--shadow); }
+    .spec-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .spec-name { font-size: .78rem; font-weight: 600; color: var(--deep); }
+
+    /* DAYS */
+    .day-pill { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 60px; height: 64px; border-radius: 12px; margin: 4px; font-size: .72rem; font-weight: 600; }
+    .day-pill.available { background: linear-gradient(135deg, var(--gold), #c08a55); color: var(--white); box-shadow: 0 3px 10px rgba(212,163,115,.35); }
+    .day-pill.unavailable { background: var(--cream); color: #bbb; }
+    .day-abbr { font-size: .82rem; font-weight: 700; }
+    .day-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 4px; }
+    .day-pill.available .day-dot { background: rgba(255,255,255,.7); }
+    .day-pill.unavailable .day-dot { background: #ccc; }
+
+    /* REVIEWS */
+    .stars { color: #f4b400; font-size: .85rem; }
+    .review-card { background: var(--light); border-radius: 12px; padding: 16px; margin-bottom: 14px; border-left: 3px solid var(--gold); }
+    .reviewer-name { font-weight: 600; font-size: .88rem; color: var(--deep); }
+    .review-date { font-size: .75rem; color: #aaa; margin-left: 8px; }
+    .review-text { font-size: .85rem; color: var(--mid); margin-top: 6px; line-height: 1.65; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .gallery-item { border-radius: 10px; aspect-ratio: 1; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: transform .25s; }
+    .gallery-item:hover { transform: scale(1.03); }
+
+    /* SIDEBAR */
+    .contact-sidebar { background: var(--white); border-radius: 18px; border: 1.5px solid var(--cream); padding: 28px 22px; box-shadow: 0 6px 30px var(--shadow); position: sticky; top: 90px; }
+    .sidebar-head { text-align: center; margin-bottom: 20px; }
+    .sidebar-head h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--deep); margin-bottom: 4px; }
+    .sidebar-head p { font-size: .8rem; color: var(--mid); }
+    .sidebar-phone { background: var(--light); border: 1.5px solid var(--cream); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .sidebar-phone-num { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--deep); font-weight: 700; }
+    .sidebar-phone-label { font-size: .72rem; color: var(--mid); margin-bottom: 2px; }
+    .btn-call-sm { background: #27ae60; color: var(--white); border: none; border-radius: 50px; padding: 7px 16px; font-size: .78rem; font-weight: 600; cursor: pointer; white-space: nowrap; text-decoration: none; transition: all .2s; display: inline-block; }
+    .btn-call-sm:hover { background: #1e8449; color: var(--white); }
+    .divider-or { display: flex; align-items: center; gap: 10px; margin: 14px 0; color: #bbb; font-size: .78rem; }
+    .divider-or::before,.divider-or::after { content: ''; flex: 1; height: 1px; background: var(--cream); }
+
+    /* FORM */
+    .form-label-sm { font-size: .78rem; color: var(--mid); font-weight: 600; margin-bottom: 5px; display: block; }
+    .input-field { width: 100%; background: var(--light); border: 1.5px solid var(--cream); border-radius: 10px; padding: 10px 14px; font-size: .85rem; color: var(--deep); outline: none; font-family: 'Poppins', sans-serif; transition: border-color .2s; margin-bottom: 12px; }
+    .input-field:focus { border-color: var(--gold); }
+    textarea.input-field { resize: vertical; min-height: 80px; }
+    .btn-submit { width: 100%; background: linear-gradient(135deg, var(--gold), #c08a55); color: var(--white); border: none; border-radius: 50px; padding: 14px; font-size: .92rem; font-weight: 600; cursor: pointer; letter-spacing: .4px; transition: all .3s; box-shadow: 0 4px 18px rgba(212,163,115,.4); margin-top: 4px; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(212,163,115,.5); }
+    .form-note { font-size: .72rem; color: #bbb; text-align: center; margin-top: 10px; }
+
+ 
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @media (max-width:768px) { .hero-actions { margin-left:0; width:100%; } .profile-card-hero { flex-direction:column; align-items:flex-start; } .hero-om { display:none; } .gallery-grid { grid-template-columns:repeat(2,1fr); } .phone-card { flex-direction:column; } }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+ <header class="py-3">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+          <div class="logo-container">
+            <a href="../index.html" class="logo">
+
+              <div class="logo-text"><img src="./image/praynook-logo.png" alt=""></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-4">
+          <div class="nav-menu">
+            <button class="nav-btn">
+              <i class="fas fa-hands-praying me-2"></i>What We Do
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<!-- HERO -->
+<div class="hero-banner">
+  <div class="hero-om">ॐ</div>
+  <div class="container py-4">
+    <div class="profile-card-hero">
+      <div class="avatar-wrap">
+        <div class="avatar-img"><i class="fas fa-user-tie"></i></div>
+        <div class="avatar-badge"></div>
+      </div>
+      <div class="hero-info">
+        <h1>Pt. Ramesh Sharma Ji</h1>
+        <div class="subtitle"><i class="fas fa-map-marker-alt me-1"></i>Varanasi, Uttar Pradesh</div>
+        <div class="hero-tags">
+          <span class="hero-tag"><i class="fas fa-star me-1"></i>4.9 Rating</span>
+          <span class="hero-tag">15+ Yrs Experience</span>
+          <span class="hero-tag">Vedic Pandit</span>
+          <span class="hero-tag">Sanskrit Scholar</span>
+        </div>
+        <div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Pandit</div>
+      </div>
+      <div class="hero-actions">
+        <a href="tel:+919876543210" class="btn-call"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col stat-item"><div class="stat-num">850+</div><div class="stat-label">Poojas Done</div></div>
+      <div class="col stat-item"><div class="stat-num">4.9</div><div class="stat-label">Avg Rating</div></div>
+      <div class="col stat-item"><div class="stat-num">15 Yrs</div><div class="stat-label">Experience</div></div>
+      <div class="col stat-item"><div class="stat-num">12+</div><div class="stat-label">Specializations</div></div>
+      <div class="col stat-item"><div class="stat-num">98%</div><div class="stat-label">Repeat Clients</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-content">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- LEFT -->
+      <div class="col-lg-8">
+
+        <!-- Phone Highlight -->
+        <div class="phone-card">
+          <div class="phone-card-left">
+            <div class="phone-icon-wrap"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <div class="phone-card-label">Booking ke liye directly call karein</div>
+              <div class="phone-card-number">+91 98765 43210</div>
+              <div class="phone-card-sub">Mon–Sat &nbsp;·&nbsp; 6:00 AM – 8:00 PM IST</div>
+            </div>
+          </div>
+          <a href="tel:+919876543210" class="btn-call"><i class="fas fa-phone me-2"></i>Call Panditji</a>
+        </div>
+
+        <!-- About -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-om"></i> About Panditji</div>
+          <p class="about-text">Pt. Ramesh Sharma Ji ek anubhavi Vedic pandit hain jinhe 15 saal se zyada ka paavitra anubhav hai. Ve Varanasi, Delhi aur poore India mein puja karaaते hain. <strong>Gurukul Kashi Vidyapeeth</strong> se prashikshit, inke paas Sanskrit aur Jyotish Shastra mein Shastri degree hai.</p>
+          <p class="about-text mt-2">Shuddh Vedic mantra uccharan, samay ki pabandhi aur gehri bhakti ke liye jaane jaate hain. Panditji on-site visits (North India) aur online puja (video call) dono ke liye upalabdh hain.</p>
+        </div>
+
+        <!-- Personal Info -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-id-card"></i> Panditji ki Jaankari</div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-user"></i></div>
+            <div><div class="info-label">Poora Naam</div><div class="info-value">Pt. Ramesh Kumar Sharma</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div><div class="info-label">Shiksha</div><div class="info-value">Shastri (Sanskrit), Jyotish Acharya – Kashi Vidyapeeth</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><div class="info-label">Sthan</div><div class="info-value">Varanasi, Uttar Pradesh &nbsp;·&nbsp; Pan India Available</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-language"></i></div>
+            <div><div class="info-label">Bhaashayen</div><div class="info-value">Hindi, Sanskrit, Bhojpuri, English (Basic)</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-briefcase"></i></div>
+            <div><div class="info-label">Anubhav</div><div class="info-value">15+ Saal &nbsp;·&nbsp; 850+ Poojas Sampann</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-video"></i></div>
+            <div><div class="info-label">Online Puja</div><div class="info-value">Upalabdh hai (Video Call ke through)</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="info-label">Sampark Karein</div>
+              <div class="info-value"><a href="tel:+919876543210" style="color:var(--gold);text-decoration:none;font-weight:600;">+91 98765 43210</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specializations -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-star-and-crescent"></i> Specializations</div>
+          <div class="spec-grid">
+            <div class="spec-item"><div class="spec-icon">🏠</div><div class="spec-name">Grih Pravesh</div></div>
+            <div class="spec-item"><div class="spec-icon">🌸</div><div class="spec-name">Satyanarayan Katha</div></div>
+            <div class="spec-item"><div class="spec-icon">🔱</div><div class="spec-name">Rudrabhishek</div></div>
+            <div class="spec-item"><div class="spec-icon">💍</div><div class="spec-name">Vivah Sanskar</div></div>
+            <div class="spec-item"><div class="spec-icon">🌞</div><div class="spec-name">Navgrah Shanti</div></div>
+            <div class="spec-item"><div class="spec-icon">👶</div><div class="spec-name">Namkaran</div></div>
+            <div class="spec-item"><div class="spec-icon">🪔</div><div class="spec-name">Diwali Lakshmi Puja</div></div>
+            <div class="spec-item"><div class="spec-icon">🌺</div><div class="spec-name">Ganesh Sthapna</div></div>
+            <div class="spec-item"><div class="spec-icon">📿</div><div class="spec-name">Jyotish Consultation</div></div>
+            <div class="spec-item"><div class="spec-icon">🕉️</div><div class="spec-name">Antyesti Kriya</div></div>
+            <div class="spec-item"><div class="spec-icon">⭐</div><div class="spec-name">Mundan</div></div>
+            <div class="spec-item"><div class="spec-icon">🌙</div><div class="spec-name">Shradh &amp; Tarpan</div></div>
+          </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-calendar-alt"></i> Uplabdhata (Availability)</div>
+          <div>
+            <span class="day-pill available"><span class="day-abbr">Mon</span><span class="day-dot"></span></span>
+            <span class="day-pill available"><span class="day-abbr">Tue</span><span class="day-dot"></span></span>
+            <span class="day-pill unavailable"><span class="day-abbr">Wed</span><span class="day-dot"></span></span>
+            <span class="day-pill available"><span class="day-abbr">Thu</span><span class="day-dot"></span></span>
+            <span class="day-pill available"><span class="day-abbr">Fri</span><span class="day-dot"></span></span>
+            <span class="day-pill available"><span class="day-abbr">Sat</span><span class="day-dot"></span></span>
+            <span class="day-pill unavailable"><span class="day-abbr">Sun</span><span class="day-dot"></span></span>
+          </div>
+          <p class="mt-3" style="font-size:.82rem; color:var(--mid);">
+            <i class="fas fa-info-circle me-1" style="color:var(--gold);"></i>
+            Budhwar aur Ravivaar vyaktigat sadhana ke liye hain. Samay: 6:00 AM – 8:00 PM IST.
+          </p>
+        </div>
+
+        <!-- Reviews -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-comments"></i> Samiksha (Reviews) <span style="font-size:.8rem;color:#999;font-family:'Poppins';font-weight:400;">(128)</span></div>
+          <div class="review-card">
+            <div class="d-flex align-items-center flex-wrap gap-1">
+              <div class="reviewer-name">Priya Agarwal</div>
+              <span class="review-date">Mar 2026</span>
+              <div class="stars ms-auto">★★★★★</div>
+            </div>
+            <div class="review-text">Panditji ne hamare naye ghar mein Grih Pravesh puri shraddha aur shuddh Vedic vidhi se karaya. Bahut punctual aur jaankaar. Zaroor recommend karenge!</div>
+          </div>
+          <div class="review-card">
+            <div class="d-flex align-items-center flex-wrap gap-1">
+              <div class="reviewer-name">Suresh Mishra</div>
+              <span class="review-date">Feb 2026</span>
+              <div class="stars ms-auto">★★★★★</div>
+            </div>
+            <div class="review-text">Satyanarayan Katha bahut sundar tarike se hui. Panditji ki mantra uccharan se poora pariwar bhavuk ho gaya. Navratri puja ke liye dobara booking karenge.</div>
+          </div>
+          <div class="review-card">
+            <div class="d-flex align-items-center flex-wrap gap-1">
+              <div class="reviewer-name">Anita Verma</div>
+              <span class="review-date">Jan 2026</span>
+              <div class="stars ms-auto">★★★★☆</div>
+            </div>
+            <div class="review-text">Online Rudrabhishek ka anubhav bahut achha raha. Panditji ne har step samjhaya jisse puja aur bhi vishesh ban gayi.</div>
+          </div>
+        </div>
+
+        <!-- Gallery -->
+        <div class="section-card">
+          <div class="section-title"><i class="fas fa-images"></i> Ceremony Gallery</div>
+          <div class="gallery-grid">
+            <div class="gallery-item">🪔</div>
+            <div class="gallery-item">🌸</div>
+            <div class="gallery-item">🔱</div>
+            <div class="gallery-item">📿</div>
+            <div class="gallery-item">🕉️</div>
+            <div class="gallery-item">🌺</div>
+          </div>
+          <p style="font-size:.78rem;color:#bbb;margin-top:10px;text-align:center;">Yahan apni actual ceremony photos lagayein</p>
+        </div>
+
+      </div><!-- /col-lg-8 -->
+
+      <!-- RIGHT – Contact Sidebar -->
+      <div class="col-lg-4">
+        <div class="contact-sidebar">
+          <div class="sidebar-head">
+            <h4>🙏 Sampark Karein</h4>
+            <p>Call karein ya form bharein — Panditji khud contact karenge</p>
+          </div>
+
+          <div class="sidebar-phone">
+            <div>
+              <div class="sidebar-phone-label">📞 Direct Booking</div>
+              <div class="sidebar-phone-num">+91 98765 43210</div>
+            </div>
+            <a href="tel:+919876543210" class="btn-call-sm">Call Now</a>
+          </div>
+
+          <div class="divider-or">ya neeche form bharein</div>
+
+          <!-- FormSubmit Form -->
+          <form action="https://formsubmit.co/vaibhavawasthi161@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Pandit Booking Request 🪔 – Praynook">
+            <input type="hidden" name="_template" value="table">
+
+            <label class="form-label-sm">Aapka Naam *</label>
+            <input type="text" name="name" class="input-field" placeholder="Poora naam likhein" required>
+
+            <label class="form-label-sm">Mobile Number *</label>
+            <input type="tel" name="phone" class="input-field" placeholder="+91 XXXXX XXXXX" required>
+
+            <label class="form-label-sm">Email (Optional)</label>
+            <input type="email" name="email" class="input-field" placeholder="aapka@email.com">
+
+            <label class="form-label-sm">Kaunsi Puja Chahiye?</label>
+            <select name="puja_type" class="input-field">
+              <option value="">-- Puja Select Karein --</option>
+              <option>Satyanarayan Katha</option>
+              <option>Grih Pravesh</option>
+              <option>Rudrabhishek</option>
+              <option>Vivah Sanskar</option>
+              <option>Namkaran</option>
+              <option>Navgrah Shanti</option>
+              <option>Online Puja (Video Call)</option>
+              <option>Kuch Aur</option>
+            </select>
+
+            <label class="form-label-sm">Sandesh / Message</label>
+            <textarea name="message" class="input-field" placeholder="Date, city ya koi bhi jaankari likhein..."></textarea>
+
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane me-2"></i>Request Bhejein
+            </button>
+            <p class="form-note"><i class="fas fa-lock me-1"></i>Aapki jaankari safe hai · Panditji 2–4 ghante mein call karenge</p>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Daily horoscope updates, festival reminders aur spiritual guidance ke liye connected rahein.</p>
+  <small>© 2026 <strong>Praynook.com</strong> | All Rights Reserved</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
